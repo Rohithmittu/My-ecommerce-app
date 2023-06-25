@@ -181,4 +181,70 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
+// get all the users--admin
 
+exports.getAllUser = catchAsyncErrors(async (req, res, next) => {
+  const users = await User.find();
+
+  res.status(200).json({
+    success: true,
+    users,
+  });
+});
+
+// get single users--admin
+
+exports.getSingleUser = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+
+  if (!user) {
+    return next(
+      new ErrorHandler(`User does not exist with Id ${req.params.id}`)
+    );
+  }
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
+
+// Update  user Role --admin
+
+exports.updateUserRole = catchAsyncErrors(async (req, res, next) => {
+  const newUserData = {
+    name: req.body.name,
+    email: req.body.email,
+    role: req.body.role,
+  };
+
+  const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+
+  res.status(200).json({
+    success: true,
+  });
+});
+
+// Delete  user --admin
+
+exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+  // we will add clousinary later
+
+  if (!user) {
+    return next(
+      new ErrorHandler(`user does not exist with Id: ${req.params.id}`)
+    );
+  }
+
+  await user.deleteOne();
+
+  res.status(200).json({
+    success: true,
+    message: "USer deleted successfully",
+  });
+});

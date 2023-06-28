@@ -10,7 +10,7 @@ exports.newOrder = catchAsyncErrors(async (req, res, next) => {
     shippingInfo,
     orderItems,
     paymentInfo,
-    ItemsPrice,
+    itemsPrice,
     taxPrice,
     shippingPrice,
     totalPrice,
@@ -20,7 +20,7 @@ exports.newOrder = catchAsyncErrors(async (req, res, next) => {
     shippingInfo,
     orderItems,
     paymentInfo,
-    ItemsPrice,
+    itemsPrice,
     taxPrice,
     shippingPrice,
     totalPrice,
@@ -66,14 +66,14 @@ exports.getAllOrders = catchAsyncErrors(async (req, res, next) => {
 
   let totalAmount = 0;
 
-  orders.forEach(order => {
+  orders.forEach((order) => {
     totalAmount += order.totalPrice;
   });
 
   res.status(200).json({
     succes: true,
     totalAmount,
-    order,
+    orders,
   });
 });
 

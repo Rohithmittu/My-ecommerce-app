@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, getProductDetails } from "../../actions/productAction";
 import {  useParams } from "react-router-dom";
 import { Rating } from "@mui/material";
+
 import ReviewCard from "./ReviewCard.js"
 import Loader from "../layout/Loader/Loader"
 import {useAlert} from "react-alert"
@@ -32,7 +33,8 @@ const ProductDetails = ({ match }) => {
     edit:false,
     color:"red",
     activeColor:"tomato",
-    size: window.innerwidth < 600 ? 20 : 25,
+    // size: window.innerwidth < 600 ? 20 : 25,
+    // size: window.innerWidth < 600 ? 20 : 25,
     value: product.ratings,
     isHalf:true,
 

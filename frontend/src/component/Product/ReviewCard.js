@@ -7,13 +7,13 @@ const ReviewCard = ({ review }) => {
     edit: false,
     color: "red",
     activeColor: "tomato",
-    // size: window.innerwidth < 600 ? 20 : 25,
+    // size: window.innerWidth < 600 ? 20 : 25,
     value: review.rating,
     isHalf: true,
   };
 
   return (
-    <div className='reviewCard'>
+    <div className="reviewCard">
       <img src={profilepng} alt='User' />
       <p>{review.name}</p>
       <Rating {...options} />

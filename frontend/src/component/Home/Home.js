@@ -15,7 +15,7 @@ const Home = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
   // eslint-disable-next-line
-  const { loading, error, products, productsCount } = useSelector(
+  const { loading, error, products } = useSelector(
     state => state.products
   );
 

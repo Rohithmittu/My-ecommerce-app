@@ -9,6 +9,7 @@ import { Rating } from "@mui/material";
 import ReviewCard from "./ReviewCard.js"
 import Loader from "../layout/Loader/Loader"
 import {useAlert} from "react-alert"
+import MetaData from "../layout/MetaData";
 
 
 const ProductDetails = ({ match }) => {
@@ -30,19 +31,20 @@ const ProductDetails = ({ match }) => {
   }, [dispatch,id,error,alert]);
 
   const options ={
-    edit:false,
+    edit: false,
     color:"red",
     activeColor:"tomato",
-    // size: window.innerwidth < 600 ? 20 : 25,
     // size: window.innerWidth < 600 ? 20 : 25,
     value: product.ratings,
+
     isHalf:true,
 
   }
 
   return (
     <Fragment>
-      {loading? <Loader /> : (<Fragment>
+      <MetaData title={`${product.name} --- ECOMMERCE`} />
+      {loading? <Loader defaultValue />  : (<Fragment>
       <div className='ProductDetails'>
         <div>
         <div>
@@ -93,10 +95,10 @@ const ProductDetails = ({ match }) => {
         <button className='submitReview'>Submit Review</button>
       </div>
       </div>
-      <h3 className="reviewHeading" > REVIEWS</h3>
-      {product.review && product.review[0] ? (
+      <h3 className="reviewsHeading" >REVIEWS</h3>
+      {product.reviews && product.reviews[0] ? (
         <div className="reviews">
-          {product.review && 
+          {product.reviews && 
           product.reviews.map((review) => <ReviewCard review={review} />)}
         </div>
       ) : (

@@ -46,6 +46,7 @@ const Header = () => {
       ProfileIconElement={FaUserAlt}
       SearchIconElement={FaSearch}
       CartIconElement={FaShoppingCart}
+      profileIconUrl='/login'
     />
   );
 };

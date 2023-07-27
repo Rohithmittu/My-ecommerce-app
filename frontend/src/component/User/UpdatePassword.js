@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useEffect } from "react";
-import "./UpdatePassword.css"
 import Loader from "../layout/Loader/Loader";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +10,7 @@ import LockOpenIcon from '@mui/icons-material/LockOpen';
 import LockIcon from '@mui/icons-material/Lock';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 
+import "./UpdatePassword.css"
 
 
 const UpdatePassword = () => {
@@ -69,7 +69,7 @@ const UpdatePassword = () => {
 
               <form
                 className='updatePasswordForm'
-                encType='multipart/form-data'
+                
                 onSubmit={updatePasswordSubmit}>
                
 

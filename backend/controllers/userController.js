@@ -4,16 +4,15 @@ const User = require("../models/userModel");
 const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
-const cloudinary = require("cloudinary")
+const cloudinary = require("cloudinary");
 
 // Register a user
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
-
-  const mycloud = await cloudinary.v2.uploader.upload(req.body.avatar,{
+  const mycloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
     folder: "avatars",
-    width:150,
-    crop:"scale",
-  })
+    width: 150,
+    crop: "scale",
+  });
 
   const { name, email, password } = req.body;
 
@@ -176,7 +175,24 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     email: req.body.email,
   };
 
-  // we will add clousinary later
+  if (req.body.avatar != "") {
+    const user = await User.findById(req.user.id);
+
+    const imageId = user.avatar.public_id;
+
+    await cloudinary.v2.uploader.destroy(imageId);
+
+    const mycloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+      folder: "avatars",
+      width: 150,
+      crop: "scale",
+    });
+
+    newUserData.avatar = {
+      public_id: mycloud.public_id,
+      url: mycloud.secure_url,
+    };
+  }
 
   const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
     new: true,
@@ -256,7 +272,4 @@ exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
     message: "User deleted successfully",
   });
 });
-
-// 
-
 

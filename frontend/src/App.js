@@ -19,6 +19,8 @@ import UpdatePassword from "./component/User/UpdatePassword.js"
 import ForgotPassword from "./component/User/ForgotPassword.js"
 import ResetPassword from "./component/User/ResetPassword.js"
 
+import Cart from "./component/Cart/Cart.js" 
+
 // import ProtectedRoute from "./component/Route/ProtectedRoute";
 
 function App() {
@@ -44,6 +46,8 @@ function App() {
         <Route path='/products/:keyword' element={<Products />} />
         <Route exact path='/search' element={<Search />} />
         <Route  exact path='/login' element={<LoginSignUp />}  />
+        
+        <Route  exact path='/cart' element={<Cart />}  />
 
 
         <Route  exact path='/account' element={<Profile />} />

@@ -1,5 +1,5 @@
 import React, { Fragment , useEffect} from "react";
-import { UseSelector, useSelector } from "react-redux/es/hooks/useSelector";
+import {  useSelector } from "react-redux/es/hooks/useSelector";
 import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader/Loader";
 import { Link, useNavigate } from "react-router-dom";

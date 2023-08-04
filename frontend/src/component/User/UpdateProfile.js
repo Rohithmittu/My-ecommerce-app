@@ -110,7 +110,7 @@ const UpdateProfile = () => {
                 </div>
 
                 <div id='updateProfileImage'>
-                  <img src='avatarPreview' alt='Avatar Preview' />
+                  <img src={avatarPreview} alt='Avatar Preview' />
                   <input
                     type='file'
                     name='avatar'

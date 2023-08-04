@@ -1,11 +1,12 @@
 import React, { Fragment, useRef, useState, useEffect } from "react";
 import "./LoginSignUp.css";
 import Loader from "../layout/Loader/Loader";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import { useNavigate } from "react-router-dom";
+
 
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, login, register } from "../../actions/userAction";
@@ -15,6 +16,8 @@ const LoginSignUp = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
   const history = useNavigate();
+  const location = useLocation();
+
   const { error, loading, isAuthenticated } = useSelector(state => state.user);
 
   const loginTab = useRef(null);
@@ -68,6 +71,9 @@ const LoginSignUp = () => {
     }
   };
 
+ 
+  const redirect = location.search ? location.search.split('=')[1] : "/account";
+
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -75,9 +81,9 @@ const LoginSignUp = () => {
     }
     if (isAuthenticated) {
       // history.push("/account")
-      history("/account");
+      history(redirect);
     }
-  }, [dispatch, error, alert, history, isAuthenticated]);
+  }, [dispatch, error, alert, history, isAuthenticated,redirect]);
 
   const switchTabs = (e, tab) => {
     if (tab === "login") {
@@ -179,7 +185,7 @@ const LoginSignUp = () => {
                 </div>
 
                 <div id='registerImage'>
-                  <img src='avatarPreview' alt='Avatar Preview' />
+                  <img src={avatarPreview} alt='Avatar Preview' />
                   <input
                     type='file'
                     name='avatar'
